@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  +norska_head
+  body.bg-theme
+    include ../header.pug
+    .mt-9.p-2
+      block content
+      #hits
+      !=data.themeMethods.template('footer', { include })
+
+    textarea#hitTemplate(hidden)
+      include ../templates/hit
+    textarea#emptyTemplate(hidden)
+      include ../templates/empty
+
+  script!=`window.CONFIG = ${JSON.stringify(data.config)}`
+  +norska_scripts
