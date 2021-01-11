@@ -4,7 +4,7 @@ module.exports = {
     try {
       return include(templatePath);
     } catch (_err) {
-      return `Create your template in ${templatePath}`;
+      return `Overwrite this template by creating ${templatePath}`;
     }
   },
 };

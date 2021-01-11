@@ -8,27 +8,13 @@ html(lang='en')
           !=data.themeMethods.template('header', { include })
         .w-100p.flex.items-center.p-1
           .w-100p#searchbox
-          //- .__searchboxContainer.pl-1.md_pl-0.fla.flrnw.flrcv.h-100p.relative
-          //-   .__poweredBy.hidden.lg_flex
-          //-     .fln Search powered by
-          //-     a.fln.ml-01.bold.hover_underline.pointer-events-auto(href=`https://www.algolia.com/?utm_source=instantsearch.js&utm_medium=website&utm_content=${url.base}&utm_campaign=poweredby`) Algolia
-          //-   #searchbox.w-100p
 
     .mt-8.flex.flex-no-wrap
       .flex-none.w-15.p-1
-        | Sidebar
+        include ../templates/sidebar
       .flex-1.p-1
         #hits
         block content
-
-    //- .w-14.fixed.top-0.left-0.bottom-0.mt-7.bg-red Sidebar
-
-
-    //- include ../header.pug
-    //- .mt-9.p-2
-    //-   block content
-    //-   #hits
-    //-   !=data.themeMethods.template('footer', { include })
 
     textarea#hitTemplate(hidden)
       include ../templates/hit
