@@ -1,15 +1,15 @@
 doctype html
 html(lang='en')
   +norska_head
-  body.debu
-    .fixed.top-0.left-0.right-0.h-8.bg-gray-9.white
+  body
+    .fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
       .flex.w-100p.h-100p
         a.flex-none.w-15(href=url.pathToRoot)
           !=data.themeMethods.template('header', { include })
         .w-100p.flex.items-center.p-1
           .w-100p#searchbox
 
-    .mt-8.flex.flex-no-wrap
+    .mt-8.flex.flex-no-wrap.z-1
       .flex-none.w-15.p-1
         include ../templates/sidebar
       .flex-1.p-1
