@@ -1,3 +1,3 @@
-/* eslint-disable node/no-extraneous-require, node/no-unpublished-require */
-const config = require('norska/lib/tailwind.config.js');
+/* eslint-disable */
+const config = require('norska/tailwind.config.js');
 module.exports = config;
