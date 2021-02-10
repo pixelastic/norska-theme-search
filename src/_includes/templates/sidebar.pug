@@ -1,1 +1,4 @@
-!=data.themeMethods.template('sidebar', { include })
+each filter in data.theme.sidebar
+  h2.theme-sidebar-title.bg-gray-9.gray-3.bold.px-02.text-3=filter.title
+  div(id=data.themeMethods.containerId(filter))
+

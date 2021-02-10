@@ -1,3 +1,4 @@
+const containerId = require('../_scripts/containerId');
 module.exports = {
   template(templateName, { include }) {
     const templatePath = `_includes/templates/${templateName}.pug`;
@@ -7,4 +8,5 @@ module.exports = {
       return `Overwrite this template by creating ${templatePath}`;
     }
   },
+  containerId,
 };

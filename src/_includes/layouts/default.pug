@@ -1,18 +1,21 @@
 doctype html
 html(lang='en')
   +norska_head
-  body
-    .fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
+  body.arial
+    .__header.theme-header.fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
       .flex.w-100p.h-100p
-        a.flex-none.w-15(href=url.pathToRoot)
-          !=data.themeMethods.template('header', { include })
-        .w-100p.flex.items-center.p-1
+        a.flex-none.w-15.hidden.sm_block(href=url.here)
+          !=data.themeMethods.template('logo', { include })
+        .w-100p.flex.items-center.pr-1
           .w-100p#searchbox
 
     .mt-8.flex.flex-no-wrap.z-1
-      .flex-none.w-15.p-1
+      .__sidebar.flex-none.w-15.bg-gray-2.border-r-001.border-black.border-opacity-25p
         include ../templates/sidebar
-      .flex-1.p-1
+
+        //- .__sidebar.hidden.md_block.absolute.md_relative.z-1.w-100p.h-100p.bg-gray-2.bg-opacity-90p.md_fln.md_w-14
+        //-   .md_border-r-001.border-black.border-opacity-25p.bg-opacity-100p
+      .flex-1.p-1.bg-gray-3
         #hits
         block content
 
@@ -21,5 +24,5 @@ html(lang='en')
     textarea#emptyTemplate(hidden)
       include ../templates/empty
 
-  script!=`window.CONFIG = ${JSON.stringify(data.config)}`
+  script!=`window.CONFIG = ${JSON.stringify(data.theme)}`
   +norska_scripts

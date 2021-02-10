@@ -1,0 +1,158 @@
+/* Toggle sidebar display on mobile screens */
+/* #sidebar_checkbox:checked ~ * .__sidebar { */
+/*   @apply block; */
+/* } */
+
+/**
+ * Refinement Lists
+ **/
+.ais-RefinementList-list {
+  @apply p-01;
+}
+.ais-RefinementList-checkbox {
+  @apply hidden;
+}
+.ais-RefinementList-label {
+  @apply flex flex-no-wrap;
+  @apply pl-5;
+  @apply pointer;
+  /* Slider background */
+  &:before {
+    content: '';
+    margin-top: 3px;
+    @apply absolute h-1 rounded-full left-0 ml-01;
+    @apply bg-gray-5 w-4;
+  }
+  /* Slider element */
+  &:after {
+    content: '';
+    margin-top: 3px;
+    @apply absolute h-1 rounded-full left-0 ml-01;
+    @apply bg-gray-3 w-1 border-002 border-gray-5;
+  }
+  &:hover {
+    &:after {
+      @apply bg-gray-7;
+    }
+  }
+}
+.ais-RefinementList-item--selected {
+  .ais-RefinementList-label {
+    @apply bold gray-9;
+    &:before {
+      @apply bg-opacity-90p;
+    }
+    &:after {
+      @apply left-0 ml-2 border-opacity-90p bg-white;
+    }
+  }
+}
+.ais-RefinementList-labelText {
+  @apply flex-grow whitespace-pre overflow-hidden;
+  mark {
+    @apply bg-opacity-10p bold;
+  }
+}
+.ais-RefinementList-count {
+  @apply flex-grow-0 relative;
+  &:before {
+    content: '';
+    @apply absolute left-0 -ml-5 w-5 h-100p;
+    @apply bg-gradient-to-r from-transparent to-gray-2;
+  }
+}
+
+.ais-RefinementList-searchBox {
+  .ais-SearchBox {
+    @apply bg-gray-1 pr-01 pl-02 border-b-001 border-gray-8;
+    &:hover {
+      @apply bg-white border-gray-9;
+    }
+    &:focus-within {
+      @apply bg-white;
+      .ais-SearchBox-input::placeholder {
+        @apply black text-opacity-50p;
+      }
+    }
+  }
+  .ais-SearchBox-form {
+    @apply flex flex-no-wrap;
+  }
+  .ais-SearchBox-input {
+    @apply flex-grow h-4 text-1 w-100p black text-opacity-75p bg-transparent;
+    &::placeholder {
+      @apply black text-opacity-50p text-smaller italic;
+    }
+    &:focus {
+      @apply outline-none text-opacity-100p;
+    }
+  }
+  .ais-SearchBox-submit {
+    @apply flex-grow-0 px-001;
+  }
+  .ais-SearchBox-reset {
+    @apply hidden;
+  }
+}
+
+/* .ais-RefinementList-showMore { */
+/*   @apply w-100p text-right pr-1; */
+/*   &:hover, */
+/*   &:focus { */
+/*     @apply underline; */
+/*   } */
+/*   &:focus { */
+/*     @apply outline-none; */
+/*   } */
+/* } */
+/* .ais-RefinementList-showMore--disabled { */
+/*   @apply hidden; */
+/* } */
+
+/*.__sidebar {*/
+/*  @apply bg-red;*/
+
+/*  .ais-RangeSlider {*/
+/*    @apply px-1 py-5 relative;*/
+
+/*    .rheostat-background {*/
+/*      @apply h-02 bg-gray-5;*/
+/*    }*/
+/*    .rheostat-progress {*/
+/*      @apply absolute h-02 top-0;*/
+/*    }*/
+/*    .rheostat-marker {*/
+/*      @apply h-02 bg-gray-5 w-001;*/
+/*    }*/
+/*    .rheostat-marker-large {*/
+/*      @apply h-1 bg-gray-7;*/
+/*    }*/
+/*    .rheostat-value {*/
+/*      @apply absolute pt-1 gray-9;*/
+/*      transform: translateX(-50%);*/
+/*      /* We currently hide it as it would display the wrong max value. We had to*/
+/*       * add 5 to all CR to allow the sorting of CR below 1 */
+/*      @apply hidden;*/
+/*    }*/
+/*    .rheostat-handle {*/
+/*      @apply border-opacity-100p w-1 h-4 -mt-4 top-2;*/
+/*      @apply z-1 cursor-move;*/
+/*    }*/
+/*    .rheostat-handle-lower {*/
+/*      @apply border-l-01;*/
+/*      .rheostat-tooltip {*/
+/*        @apply -left-1 right-0;*/
+/*      }*/
+/*    }*/
+/*    .rheostat-handle-upper {*/
+/*      @apply border-r-01 -ml-1;*/
+/*      .rheostat-tooltip {*/
+/*        @apply -right-1 left-0;*/
+/*      }*/
+/*    }*/
+/*    .rheostat-tooltip {*/
+/*      @apply absolute -top-3 text-center;*/
+/*      @apply bold rounded p-01;*/
+/*    }*/
+/*  }*/
+/*}*/

@@ -1,25 +1,35 @@
 const lazyload = require('norska/frontend/lazyload');
 const algolia = require('norska/frontend/algolia');
-const {
-  configure,
-  hits,
-  searchBox,
-} = require('norska/frontend/algolia/widgets');
+const algoliaWidgets = require('norska/frontend/algolia/widgets');
 const themeConfig = require('./_scripts/themeConfig.js');
-const algoliaCredentials = window.CONFIG.algolia;
+const containerId = require('./_scripts/containerId.js');
+const showMoreText = require('./_scripts/showMoreText.js');
+const { map, merge, has } = require('lodash-es');
 
 module.exports = {
   async init(options = {}) {
-    themeConfig.options = { ...themeConfig.options, ...options };
+    // Merging default, theme and runtime options and sharing them
+    themeConfig.options = {
+      ...themeConfig.options,
+      ...window.CONFIG,
+      ...options,
+    };
 
-    const { widgets, transforms, searchParameters } = themeConfig.options;
+    const {
+      credentials,
+      placeholder,
+      searchParameters,
+      transforms,
+      widgets,
+      sidebar,
+    } = themeConfig.options;
 
     const defaultWidgets = [
       /**
        * Main configuration
        **/
       {
-        type: configure,
+        type: algoliaWidgets.configure,
         options: {
           hitsPerPage: 24,
           ...searchParameters,
@@ -29,10 +39,10 @@ module.exports = {
        * Searchbar
        **/
       {
-        type: searchBox,
+        type: algoliaWidgets.searchBox,
         options: {
           container: '#searchbox',
-          placeholder: 'Type any keyword...',
+          placeholder,
           autofocus: true,
           showReset: false,
           showSubmit: false,
@@ -43,7 +53,7 @@ module.exports = {
        * Hits
        **/
       {
-        type: hits,
+        type: algoliaWidgets.hits,
         options: {
           container: '#hits',
           templates: {
@@ -58,22 +68,38 @@ module.exports = {
       //     container: '#pagination',
       //   },
       // },
-      /**
-       * Sidebar filtering
-       **/
-      // {
-      //   type: refinementList,
-      //   options: {
-      //     container: '#filterBook',
-      //     attribute: 'book',
-      //     sortBy: ['name:asc'],
-      //   },
-      // },
     ];
 
+    // Convert _data/theme.js .sidebar entry into widgets
+    const sidebarWidgets = map(sidebar, (sidebarEntry) => {
+      const sidebarOptions = {
+        ...sidebarEntry.options,
+        container: `#${containerId(sidebarEntry)}`,
+      };
+      const type = sidebarEntry.type || 'refinementList';
+      return {
+        type: algoliaWidgets[type],
+        options: sidebarOptions,
+      };
+    });
+
+    // Add default showMore text
+    const allWidgets = map(
+      [...defaultWidgets, ...sidebarWidgets, ...widgets],
+      (widget) => {
+        if (!has(widget, 'options.showMore')) {
+          return widget;
+        }
+
+        return merge({}, widget, {
+          options: { templates: { showMoreText } },
+        });
+      }
+    );
+
     algolia
-      .init(algoliaCredentials)
-      .setWidgets([...defaultWidgets, ...widgets])
+      .init(credentials)
+      .setWidgets(allWidgets)
       .setTransforms(transforms)
       // .onDisplay(hit => {
       //   console.info(hit.picture);
