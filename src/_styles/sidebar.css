@@ -95,19 +95,18 @@
   }
 }
 
-/* .ais-RefinementList-showMore { */
-/*   @apply w-100p text-right pr-1; */
-/*   &:hover, */
-/*   &:focus { */
-/*     @apply underline; */
-/*   } */
-/*   &:focus { */
-/*     @apply outline-none; */
-/*   } */
-/* } */
-/* .ais-RefinementList-showMore--disabled { */
-/*   @apply hidden; */
-/* } */
+.ais-RefinementList-showMore {
+  @apply w-100p text-right pr-1;
+  &:hover {
+    @apply underline;
+  }
+  &:focus {
+    @apply underline outline-none;
+  }
+}
+.ais-RefinementList-showMore--disabled {
+  @apply hidden;
+}
 
 /*.__sidebar {*/
 /*  @apply bg-red;*/

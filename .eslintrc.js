@@ -11,12 +11,12 @@ module.exports = {
             allowModules: ['norska'],
           },
         ],
-        // 'node/no-extraneous-require': [
-        //   'error',
-        //   {
-        //     allowModules: ['lodash-es', 'hogan.js'],
-        //   },
-        // ],
+        'node/no-extraneous-require': [
+          'error',
+          {
+            allowModules: ['norska-config'],
+          },
+        ],
       },
     },
   ],

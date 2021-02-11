@@ -1,6 +1,11 @@
 const lazyload = require('norska/frontend/lazyload');
 const algolia = require('norska/frontend/algolia');
-const algoliaWidgets = require('norska/frontend/algolia/widgets');
+const {
+  configure,
+  searchBox,
+  hits,
+  refinementList,
+} = require('norska/frontend/algolia/widgets');
 const themeConfig = require('./_scripts/themeConfig.js');
 const containerId = require('./_scripts/containerId.js');
 const showMoreText = require('./_scripts/showMoreText.js');
@@ -21,7 +26,6 @@ module.exports = {
       searchParameters,
       transforms,
       widgets,
-      sidebar,
     } = themeConfig.options;
 
     const defaultWidgets = [
@@ -29,7 +33,7 @@ module.exports = {
        * Main configuration
        **/
       {
-        type: algoliaWidgets.configure,
+        type: configure,
         options: {
           hitsPerPage: 24,
           ...searchParameters,
@@ -39,7 +43,7 @@ module.exports = {
        * Searchbar
        **/
       {
-        type: algoliaWidgets.searchBox,
+        type: searchBox,
         options: {
           container: '#searchbox',
           placeholder,
@@ -53,7 +57,7 @@ module.exports = {
        * Hits
        **/
       {
-        type: algoliaWidgets.hits,
+        type: hits,
         options: {
           container: '#hits',
           templates: {
@@ -70,32 +74,25 @@ module.exports = {
       // },
     ];
 
-    // Convert _data/theme.js .sidebar entry into widgets
-    const sidebarWidgets = map(sidebar, (sidebarEntry) => {
-      const sidebarOptions = {
-        ...sidebarEntry.options,
-        container: `#${containerId(sidebarEntry)}`,
-      };
-      const type = sidebarEntry.type || 'refinementList';
-      return {
-        type: algoliaWidgets[type],
-        options: sidebarOptions,
-      };
-    });
-
-    // Add default showMore text
-    const allWidgets = map(
-      [...defaultWidgets, ...sidebarWidgets, ...widgets],
-      (widget) => {
-        if (!has(widget, 'options.showMore')) {
-          return widget;
-        }
-
-        return merge({}, widget, {
-          options: { templates: { showMoreText } },
-        });
+    // Enhance widgets with some default values
+    const allWidgets = map([...defaultWidgets, ...widgets], (widget) => {
+      // Add custom showMore button
+      if (has(widget, 'options.showMore')) {
+        merge(widget, { options: { templates: { showMoreText } } });
       }
-    );
+
+      // Add default container
+      if (!has(widget, 'container') && has(widget, 'options.attribute')) {
+        merge(widget, { options: { container: `#${containerId(widget)}` } });
+      }
+
+      // Add default type
+      if (!has(widget, 'type')) {
+        widget.type = refinementList;
+      }
+
+      return widget;
+    });
 
     algolia
       .init(credentials)

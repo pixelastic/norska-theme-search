@@ -1,9 +1,6 @@
 // Generate a unique name from a widgetDefinition
-module.exports = (widgetDefinition) => {
-  const attribute =
-    widgetDefinition &&
-    widgetDefinition.options &&
-    widgetDefinition.options.attribute;
+module.exports = (widget) => {
+  const attribute = widget && widget.options && widget.options.attribute;
   const slug = attribute.replace('.', '-');
   return `filter-${slug}`;
 };
