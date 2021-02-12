@@ -4,9 +4,3 @@
 .ais-Hits-list {
   @apply flex flex-row flex-wrap;
 }
-.ais-Hits-item {
-  @apply flex;
-}
-/* .ais-Hits-item { */
-/*   @apply w-33p pr-1 pb-1 flex; */
-/* } */
