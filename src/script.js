@@ -1,15 +1,10 @@
 const lazyload = require('norska/frontend/lazyload');
 const algolia = require('norska/frontend/algolia');
-const {
-  configure,
-  searchBox,
-  hits,
-  refinementList,
-} = require('norska/frontend/algolia/widgets');
+const algoliaWidgets = require('norska/frontend/algolia/widgets');
 const themeConfig = require('./_scripts/themeConfig.js');
 const containerId = require('./_scripts/containerId.js');
 const showMoreText = require('./_scripts/showMoreText.js');
-const { map, merge, has } = require('lodash-es');
+const { map, merge, has, isString } = require('lodash-es');
 
 module.exports = {
   async init(options = {}) {
@@ -33,7 +28,7 @@ module.exports = {
        * Main configuration
        **/
       {
-        type: configure,
+        type: algoliaWidgets.configure,
         options: {
           hitsPerPage: 24,
           ...searchParameters,
@@ -43,7 +38,7 @@ module.exports = {
        * Searchbar
        **/
       {
-        type: searchBox,
+        type: algoliaWidgets.searchBox,
         options: {
           container: '#searchbox',
           placeholder,
@@ -57,7 +52,7 @@ module.exports = {
        * Hits
        **/
       {
-        type: hits,
+        type: algoliaWidgets.hits,
         options: {
           container: '#hits',
           templates: {
@@ -66,12 +61,12 @@ module.exports = {
           },
         },
       },
-      // {
-      //   type: pagination,
-      //   options: {
-      //     container: '#pagination',
-      //   },
-      // },
+      {
+        type: algoliaWidgets.pagination,
+        options: {
+          container: '#pagination',
+        },
+      },
     ];
 
     // Enhance widgets with some default values
@@ -88,7 +83,12 @@ module.exports = {
 
       // Add default type
       if (!has(widget, 'type')) {
-        widget.type = refinementList;
+        widget.type = algoliaWidgets.refinementList;
+      }
+
+      // Convert string types to real types
+      if (isString(widget.type)) {
+        widget.type = algoliaWidgets[widget.type];
       }
 
       return widget;

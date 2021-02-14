@@ -1,0 +1,27 @@
+/**
+ * Pagination
+ **/
+.ais-Pagination {
+  @apply flex flex-center;
+}
+.ais-Pagination-list {
+  @apply flex flex-no-wrap;
+}
+.ais-Pagination-item {
+  @apply flex w-4 h-4;
+  /* @apply flex-none flex flex-col flex-no-wrap flc w-4 h-4; */
+}
+.ais-Pagination-link {
+  @apply flex-auto flex flex-center text-2 rounded pointer;
+  &:hover {
+    @apply bg-gray-8 white;
+  }
+}
+.ais-Pagination-item--selected {
+  .ais-Pagination-link {
+    @apply bold bg-gray-8 white;
+  }
+}
+.ais-Pagination-item--disabled {
+  @apply invisible;
+}
