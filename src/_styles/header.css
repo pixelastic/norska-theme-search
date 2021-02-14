@@ -32,13 +32,6 @@
   .__header:focus-within .__filters {
     @apply black;
   }
-  /* Stats and Powered by */
-  .ais-Stats-link {
-    @apply bold pointer;
-    &:hover {
-      @apply underline;
-    }
-  }
 }
 
 /* Change Placeholder size based on screen size */
@@ -55,4 +48,9 @@
       @apply text-3;
     }
   }
+}
+
+/* Change Powered By color based on focus */
+.__searchboxContainer:focus-within .__poweredBy {
+  @apply black;
 }

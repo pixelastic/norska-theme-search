@@ -1,15 +1,18 @@
 doctype html
-html(lang='en')
+html.h-100p(lang='en')
   +norska_head
-  body.arial
+  body.arial.min-h-100p.flex.flex-col
     .__header.theme-header.fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
       .flex.w-100p.h-100p
         a.flex-none.w-15.hidden.sm_block(href=url.here)
           !=data.themeMethods.template('logo', { include })
-        .w-100p.flex.items-center.pr-1
+        .__searchboxContainer.w-100p.flex.items-center.pr-1.relative
+          .__poweredBy.absolute.right-0.mr-2.bottom-0.mb-1.flex.lh-1.white.opacity-50p.pointer-events-none
+            .flex-auto.mr-01 Search powered by
+            a.flex-1.bold.hover_underline.pointer-events-auto(href=`https://www.algolia.com/?utm_source=instantsearch.js&utm_medium=website&utm_content=${data.meta.productionUrl}&utm_campaign=poweredby`) Algolia
           .w-100p#searchbox
 
-    .mt-8.flex.flex-no-wrap.z-1
+    .mt-8.flex-auto.flex.flex-no-wrap.z-1
       .__sidebar.flex-none.w-15.bg-gray-2.border-r-001.border-black.border-opacity-25p
         include ../templates/sidebar
 
