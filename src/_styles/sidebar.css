@@ -1,8 +1,3 @@
-/* Toggle sidebar display on mobile screens */
-/* #sidebar_checkbox:checked ~ * .__sidebar { */
-/*   @apply block; */
-/* } */
-
 /**
  * Refinement Lists
  **/
@@ -177,8 +172,3 @@
     }
   }
 }
-
-/*.__sidebar {*/
-/*  @apply bg-red;*/
-
-/*}*/

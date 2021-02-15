@@ -11,7 +11,6 @@ module.exports = {
     // Merging default, theme and runtime options and sharing them
     themeConfig.options = {
       ...themeConfig.options,
-      ...window.CONFIG,
       ...options,
     };
 
