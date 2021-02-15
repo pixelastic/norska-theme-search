@@ -19,7 +19,7 @@
     @apply h-6 text-4 w-100p bg-transparent;
     @apply white text-opacity-75p;
     &::placeholder {
-      @apply white text-opacity-75p italic text-1;
+      @apply white text-opacity-75p italic text-3;
     }
     &:focus {
       @apply outline-none gray-9 text-opacity-90p;
@@ -38,7 +38,7 @@
 @screen sm {
   .__header {
     .ais-SearchBox-input::placeholder {
-      @apply text-2;
+      @apply text-3;
     }
   }
 }

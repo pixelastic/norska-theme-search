@@ -1,23 +1,37 @@
 doctype html
 html.h-100p(lang='en')
   +norska_head
-  body.arial.min-h-100p.flex.flex-col
+  body.arial.min-h-100p.flex.flex-col.relative
+    input#sidebar_checkbox.hidden.if(type="checkbox")
+
     .__header.theme-header.fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
       .flex.w-100p.h-100p
-        a.flex-none.w-15.hidden.sm_block(href=url.here)
+        //- Title
+        a.flex-none.w-15.hidden.sm_block.lh-1(href=url.here)
           !=data.themeMethods.template('logo', { include })
-        .__searchboxContainer.w-100p.flex.items-center.pr-1.relative
-          .__poweredBy.absolute.right-0.mr-2.bottom-0.mb-1.flex.lh-1.white.opacity-50p.pointer-events-none
+
+        //- Search box
+        .__searchboxContainer.w-100p.flex.items-center.pl-1.md_pl-0.relative
+          //- Powered By
+          .__poweredBy.hidden.lg_flex.absolute.right-0.mr-2.bottom-0.mb-1.lh-1.white.opacity-50p.pointer-events-none
             .flex-auto.mr-01 Search powered by
             a.flex-1.bold.hover_underline.pointer-events-auto(href=`https://www.algolia.com/?utm_source=instantsearch.js&utm_medium=website&utm_content=${data.meta.productionUrl}&utm_campaign=poweredby`) Algolia
+          //- Searchbox
           .w-100p#searchbox
 
-    .mt-8.flex-auto.flex.flex-no-wrap.z-1
-      .__sidebar.flex-none.w-15.bg-gray-2.border-r-001.border-black.border-opacity-25p
-        include ../templates/sidebar
+        //- Menu
+        .flex.flex-center.pr-1
 
-        //- .__sidebar.hidden.md_block.absolute.md_relative.z-1.w-100p.h-100p.bg-gray-2.bg-opacity-90p.md_fln.md_w-14
-        //-   .md_border-r-001.border-black.border-opacity-25p.bg-opacity-100p
+          label.theme-menu-icon.pointer.white.hover_gray-7.ml-2.md_hidden(for="sidebar_checkbox")
+            .h-5.w-5
+              +svg_sliders.h-100p.w-100p.stroke-current
+
+    //- Smooth gradient below the header
+    .fixed.then_hidden.z-2.inset-0.mt-8.md_ml-15.h-1.bg-gradient-to-b.from-gray-2.to-transparent
+
+    .mt-8.flex-auto.flex.flex-no-wrap.z-1
+      .__sidebar.hidden.then_block.md_block.absolute.md_relative.z-3.w-100p.md_w-15.h-100p.bg-gray-2.bg-opacity-90p.x--hidden.flex-none.md_border-r-001.border-black.border-opacity-25p
+        include ../templates/sidebar
       .flex-1.p-01.bg-gray-3
         #hits
         #pagination.mt-1
