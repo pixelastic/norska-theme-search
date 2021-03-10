@@ -50,6 +50,13 @@
   }
 }
 
+/* Stats and Powered by */
+.ais-Stats-link {
+  @apply bold pointer pointer-events-auto;
+  &:hover {
+    @apply underline;
+  }
+}
 /* Change Powered By color based on focus */
 .__searchboxContainer:focus-within .__poweredBy {
   @apply black;

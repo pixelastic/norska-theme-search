@@ -17,6 +17,7 @@ module.exports = {
     const {
       credentials,
       placeholder,
+      hitName,
       searchParameters,
       transforms,
       widgets,
@@ -45,6 +46,26 @@ module.exports = {
           showReset: false,
           showSubmit: false,
           showLoadingIndicator: false,
+        },
+      },
+      {
+        type: algoliaWidgets.stats,
+        options: {
+          container: '#stats',
+          templates: {
+            text(statOptions) {
+              const { hostname, pathname } = window.location;
+              const utmContent = `${hostname}${pathname}`;
+              const poweredByUrl = `https://www.algolia.com/?utm_source=instantsearch.js&utm_medium=website&utm_content=${utmContent}&utm_campaign=poweredby`;
+              const suffix = `thanks to <a class="ais-Stats-link" href="${poweredByUrl}" target="_blank">Algolia</a>`;
+              const { query, nbHits } = statOptions;
+              const pluralizedHitName = nbHits === 1 ? hitName : `${hitName}s`;
+              if (!query) {
+                return `${nbHits} ${pluralizedHitName} indexed, ${suffix}`;
+              }
+              return `${nbHits} ${pluralizedHitName} found, ${suffix}`;
+            },
+          },
         },
       },
       /**
