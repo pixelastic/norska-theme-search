@@ -7,11 +7,11 @@ const showMoreText = require('./_scripts/showMoreText.js');
 const { map, merge, has, isString } = require('lodash-es');
 
 module.exports = {
-  async init(options = {}) {
-    // Merging default, theme and runtime options and sharing them
+  async init(runtimeOptions = {}) {
+    // Merging theme and runtime options and sharing them
     themeConfig.options = {
       ...themeConfig.options,
-      ...options,
+      ...runtimeOptions,
     };
 
     const {
@@ -90,6 +90,7 @@ module.exports = {
     ];
 
     // Enhance widgets with some default values
+    let defaultUiState = {};
     const allWidgets = map([...defaultWidgets, ...widgets], (widget) => {
       // Add custom showMore button
       if (has(widget, 'options.showMore')) {
@@ -111,11 +112,23 @@ module.exports = {
         widget.type = algoliaWidgets[widget.type];
       }
 
+      // Build the default UI state based on the defaultValues
+      if (widget.defaultValue) {
+        const widgetName = widget.type.name;
+        const { attribute } = widget.options;
+
+        defaultUiState = merge({}, defaultUiState, {
+          [widgetName]: {
+            [attribute]: widget.defaultValue,
+          },
+        });
+      }
+
       return widget;
     });
 
     algolia
-      .init(credentials)
+      .init(credentials, { defaultUiState })
       .setWidgets(allWidgets)
       .setTransforms(transforms)
       // .onDisplay(hit => {
