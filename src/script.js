@@ -4,6 +4,7 @@ const algoliaWidgets = require('norska/frontend/algolia/widgets');
 const themeConfig = require('./_scripts/themeConfig.js');
 const containerId = require('./_scripts/containerId.js');
 const showMoreText = require('./_scripts/showMoreText.js');
+const initialUiStateKey = require('./_scripts/initialUiStateKey');
 const { map, merge, has, isString } = require('lodash-es');
 
 module.exports = {
@@ -114,11 +115,11 @@ module.exports = {
 
       // Build the default UI state based on the defaultValues
       if (widget.defaultValue) {
-        const widgetName = widget.type.name;
+        const keyName = initialUiStateKey(widget);
         const { attribute } = widget.options;
 
         defaultUiState = merge({}, defaultUiState, {
-          [widgetName]: {
+          [keyName]: {
             [attribute]: widget.defaultValue,
           },
         });
