@@ -115,7 +115,7 @@ module.exports = {
 
       // Build the default UI state based on the defaultValues
       if (widget.defaultValue) {
-        const keyName = initialUiStateKey(widget);
+        const keyName = initialUiStateKey(widget.type);
         const { attribute } = widget.options;
 
         defaultUiState = merge({}, defaultUiState, {
