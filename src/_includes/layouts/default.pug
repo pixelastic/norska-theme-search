@@ -39,8 +39,8 @@ html.h-100p(lang='en')
         block content
 
     textarea#hitTemplate(hidden)
-      include ../templates/hit
+      !=data.themeMethods.template('hit', { include })
     textarea#emptyTemplate(hidden)
-      include ../templates/empty
+      !=data.themeMethods.template('empty', { include })
 
     +norska_scripts
