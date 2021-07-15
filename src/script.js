@@ -17,8 +17,9 @@ module.exports = {
 
     const {
       credentials,
-      placeholder,
       hitName,
+      onSearch,
+      placeholder,
       searchParameters,
       transforms,
       widgets,
@@ -132,6 +133,7 @@ module.exports = {
       .init(credentials, { defaultUiState })
       .setWidgets(allWidgets)
       .setTransforms(transforms)
+      .onSearch(onSearch)
       // .onDisplay(hit => {
       //   console.info(hit.picture);
       // })
