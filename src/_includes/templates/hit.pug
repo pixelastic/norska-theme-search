@@ -1,1 +1,22 @@
-p {{__raw}}
+block content
+  .p-02.flex-auto
+    .flex.flex-col.flex-no-wrap.bg-gray-2.md_h-16.shadow-2.relative
+      //- Title
+      a.theme-header.flex-none.flex.flex-cross-center.py-01(href="{{url}}" target="_blank")
+        .__title.flex-none.white.text-4.bold.pl-1.lh-2.hover_underline {{{title}}}{{{name}}}
+
+      //- Image and text
+      .flex-auto.flex.flex-col.md_flex-row.overflow-hidden.border-r-001.border-l-001.border-gray-5
+        .flex-none.w-60p.relative.order-2.md_order-1
+          .__description.p-1.text-1.whitespace-pre-line {{{description}}}
+          .hidden.md_block.absolute.bottom-0.left-0.right-0.h-5.bg-gradient-to-b.from-transparent.to-gray-2
+        .flex-none.w-40p.order-1.md_order-2
+          a.flex-none.h-14.flex.flex-center.p-02(href="{{url}}" target="_blank")
+            img.object-contain.max-w-100p.max-h-100p(class="{{img.cssClass}}" data-src="{{img.dataSrc}}" src="{{img.src}}" width="{{img.width}}" height="{{img.height}}" data-uuid="{{img.dataUuid}}" )
+
+      //- Metadata
+      .flex-none.border-r-001.border-b-001.border-l-001.border-gray-5.relative
+        .py-01.px-02.bg-black.bg-opacity-75p.white.flex.flex-cross-center
+          .flex-auto.italic.text-01 Create your own hit template by creating 
+            a.underline(href="https://github.com/pixelastic/norska-theme-search/blob/master/src/_includes/templates/hit.pug") ./src/_includes/templates/hit.pug
+

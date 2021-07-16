@@ -5,6 +5,7 @@
   },
   "files": [
     "main.js",
+    "lazyloadHelper.js",
     "tailwind.config.js",
     "src/"
   ],

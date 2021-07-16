@@ -1,0 +1,14 @@
+/**
+ * Search results
+ **/
+.ais-Hits-list {
+  @apply flex pb-1 flex-row flex-wrap;
+}
+.ais-Hits-item {
+  @apply flex-none flex flex-col flex-no-wrap w-100p;
+}
+@screen xl {
+  .ais-Hits-item {
+    @apply w-50p;
+  }
+}

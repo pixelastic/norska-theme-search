@@ -1,6 +1,0 @@
-/**
- * Search results
- **/
-.ais-Hits-list {
-  @apply flex flex-row flex-wrap;
-}

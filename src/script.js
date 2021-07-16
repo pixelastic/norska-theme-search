@@ -5,10 +5,13 @@ const themeConfig = require('./_scripts/themeConfig.js');
 const containerId = require('./_scripts/containerId.js');
 const showMoreText = require('./_scripts/showMoreText.js');
 const initialUiStateKey = require('./_scripts/initialUiStateKey');
+const lazyloadHelper = require('./_scripts/lazyloadHelper');
 const { map, merge, has, isString } = require('lodash-es');
 
 module.exports = {
   async init(runtimeOptions = {}) {
+    lazyloadHelper.init();
+
     // Merging theme and runtime options and sharing them
     themeConfig.options = {
       ...themeConfig.options,
