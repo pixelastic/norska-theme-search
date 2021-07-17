@@ -9,8 +9,8 @@ html.h-100p(lang='en')
     .__header.theme-header.fixed.z-2.top-0.left-0.right-0.h-8.bg-gray-9.white
       .flex.w-100p.h-100p
         //- Title
-        a.flex-none.w-15.hidden.sm_block.lh-1(href=url.pathToRoot)
-          !=data.themeMethods.template('logo', { include })
+        .flex-none.w-15.hidden.sm_block.lh-1
+          !=include("_includes/templates/logo.pug")
 
         //- Search box
         .__searchboxContainer.flex.flex-auto.flex-cross-center.pl-1.md_pl-0.relative
@@ -31,16 +31,16 @@ html.h-100p(lang='en')
     .fixed.then_hidden.z-2.inset-0.mt-8.md_ml-15.h-1.bg-gradient-to-b.from-gray-2.to-transparent
 
     .mt-8.flex-auto.flex.flex-no-wrap.z-1
-      .__sidebar.hidden.then_block.md_block.absolute.left-0.right-0.md_relative.z-3.md_w-15.h-100p.bg-gray-2.bg-opacity-90p.x--hidden.flex-none.md_border-r-001.border-black.border-opacity-25p
-        include ../templates/sidebar
+      .__sidebar.hidden.then_block.md_block.absolute.left-0.right-0.md_relative.z-3.md_w-15.h-100p.bg-gray-2.bg-opacity-90p.flex-none.md_border-r-001.border-black.border-opacity-25p
+        include ../templates/theme/sidebar
       .flex-1.p-01.bg-gray-3
         #hits
         #pagination.mt-1
         block content
 
     textarea#hitTemplate(hidden)
-      !=data.themeMethods.template('hit', { include })
+      !=include("_includes/templates/hit.pug")
     textarea#emptyTemplate(hidden)
-      !=data.themeMethods.template('empty', { include })
+      !=include("_includes/templates/empty.pug")
 
     +norska_scripts
