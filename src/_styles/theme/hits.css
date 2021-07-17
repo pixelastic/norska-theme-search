@@ -12,3 +12,9 @@
     @apply w-50p;
   }
 }
+
+/* Blur the placeholder */
+img.lazyload,
+img.lazyloading {
+  filter: blur(5px);
+}
