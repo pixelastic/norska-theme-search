@@ -25,7 +25,7 @@ module.exports = {
       placeholder,
       searchParameters,
       transforms,
-      widgets,
+      sidebar,
     } = themeConfig.options;
 
     const defaultWidgets = [
@@ -96,7 +96,7 @@ module.exports = {
 
     // Enhance widgets with some default values
     let defaultUiState = {};
-    const allWidgets = map([...defaultWidgets, ...widgets], (widget) => {
+    const allWidgets = map([...defaultWidgets, ...sidebar], (widget) => {
       // Add custom showMore button
       if (has(widget, 'options.showMore')) {
         merge(widget, { options: { templates: { showMoreText } } });

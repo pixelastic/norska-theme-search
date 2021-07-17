@@ -1,4 +1,4 @@
-each widget in data.theme.widgets
+each widget in data.theme.sidebar
   if !data.themeMethods.shouldHideWidget(widget, data)
     h2.theme-sidebar-title.bg-gray-9.gray-3.bold.px-02.text-3=widget.title
     div(id=data.themeMethods.containerId(widget))
