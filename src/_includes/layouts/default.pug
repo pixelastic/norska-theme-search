@@ -36,7 +36,10 @@ html.h-100p(lang='en')
       .flex-1.p-01.bg-gray-3
         #hits
         #pagination.mt-1
-        block content
+        //- We don't really need the initial page content, 
+        //- but we need the "block content" pug code, so we just hide it
+        .hidden
+          block content
 
     textarea#hitTemplate(hidden)
       !=include("_includes/templates/hit.pug")
